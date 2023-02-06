@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 02:32:41 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/06 03:11:02 by sabdelra         ###   ########.fr       */
+/*   Created: 2023/02/06 03:10:06 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/02/06 04:57:04 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-#define FDF_H
+#ifndef MAP_H
+#define MAP_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include "../gnl/get_next_line.h"
-#include "map.h"
+typedef struct s_point {
+	int	p_v3d[3];
+	int p_v2d[2];
+	// int	color;
+}	t_point;
 
+typedef struct s_map {
+	int	dim[2]; // WIDTH HEIGHT
+	t_point	**point;
+} t_map;
+
+t_map	*parse_points(int mfd);
 
 
 #endif

@@ -6,12 +6,12 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 02:34:38 by sabdelra          #+#    #+#              #
-#    Updated: 2023/02/06 02:57:44 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/02/06 03:09:52 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC:= main.c
-OBJ:= main.o
+SRC:= main.c parse_map.c
+OBJ:= main.o parse_map.o
 NAME:= fdf
 CCFLAGS:= -Wall -Werror -Wextra
 GNLDIR:= ../gnl/
