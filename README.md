@@ -8,11 +8,7 @@ Given a map in fdf format draws the map in isometric view with lines joining the
 ---
 ## **To-Do List**
 
-> [ ]	draw lines horizantally -> vertically (2 steps)
-
-> [ ]	inc. offset
-
-> [ ]	center the image
+> [ ]	inc. offset as dynamic value based on window size
 
 > [ ]	remove unnecessary files
 
@@ -29,3 +25,8 @@ Given a map in fdf format draws the map in isometric view with lines joining the
 > [ ]	errors
 
 > [ ]	fix hard-coding below line
+
+
+- changes
+  lines both directions
+  height to color ratio

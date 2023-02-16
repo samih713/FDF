@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/16 15:13:14 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:26:50 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct t_map
 {
 	int size; // point count
 	int os_u; // offset
-	int max_u;
+	int max_height;
 	bool color;
 	m_point *p; // array of structs
 } t_map;
