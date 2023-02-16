@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/15 15:30:04 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:13:14 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // color
 
 // Map
-#define MAP_FILE "/home/eva001/42/fdf/maps/maps/test_maps/42.fdf"
+#define MAP_FILE "/home/eva001/42/FDF/maps/maps/test_maps/42.fdf"
 
 typedef struct m_point
 {

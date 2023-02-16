@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/15 16:55:28 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:08:10 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 	dy = y1 - y0;
 
 	p = 2 * (dy - dx); // error
-	while (x < x1)
+	while (x <= x1)
 	{
 		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
 		if (p >= 0)
@@ -45,17 +45,44 @@
 	}
 } */
 
-void bresenham(int x0, int x1, int y0, int y1, void *mlx_ptr, void *win_ptr, int color) {
-
-  int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
-  int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1;
-  int err = (dx>dy ? dx : -dy)/2, e2;
-
-  for(;;){
-    mlx_pixel_put(mlx_ptr, win_ptr, x0, y0, color);
-    if (x0==x1 && y0==y1) break;
-    e2 = err;
-    if (e2 >-dx) { err -= dy; x0 += sx; }
-    if (e2 < dy) { err += dx; y0 += sy; }
-  }
+void bresenham(int x0, int x1, int y0, int y1, void *mlx_ptr, void *win_ptr, int color)
+{
+	int x, y;
+	x = x0;
+	y = y0;
+	//
+	int dx, dy;
+	dx = abs(x1 - x0);
+	dy = abs(y1 - y0);
+	//
+	int sx, sy;
+	if (x1 < x0) sx = -1;
+	else sx=1;
+	if (y1 < y0) sy = -1;
+	else sy=1;
+	//
+	int p, temp, ch;
+	ch = 0;
+	if (dy > dx) {
+		temp = dx;
+		dx = dy;
+		dy = temp;
+		ch = 1;
+	}
+	p = 2 * (dy - dx);
+	while (x <= x1) {
+		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
+		if (p < 0) {
+			if (ch == 1)
+				y += sy;
+			else
+				x += sx;
+			p += 2 * 2 * dy;
+		}
+		else {
+			y += sy;
+			x += sx;
+			p += (2 * dy) - (2 * dx);
+		}
+	}
 }

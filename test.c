@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/15 16:39:15 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:36:47 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int main(void)
 			bresenham(u0, u1, v0, v1, mlx_ptr, win_ptr, color_2);
 		}
 		if (i > 18) {
-			u_above = map->p[i - 19].p_2dv[u]; //19 is hardcoding the next line???
-			v_above = map->p[i - 19].p_2dv[v];
+			u_above = map->os_u + map->p[i - 19].p_2dv[u]; //19 is hardcoding the next line???
+			v_above = map->os_u + map->p[i - 19].p_2dv[v];
 			bresenham(u0, u_above, v0, v_above, mlx_ptr, win_ptr, color_2);
 		}
 		i++;
