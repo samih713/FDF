@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/16 16:59:38 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:30:55 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@
 #include "fdf.h"
 #include <stdio.h>
 
+void	img_pix_put(t_img *img, int a, int b, int color) {
+	char	*pixel;
+
+	pixel = img->addr + (b * img->line_len + (a * (img->bpp / sizeof(int))));
+	*(int *)pixel = color;
+}
 
 int main(void)
 {
 	t_map *map;
-	void	*mlx_ptr;
+	t_fdf	fdf;
 	void	*win_ptr;
 	int white, red;
 	int i;
@@ -33,39 +39,41 @@ int main(void)
 	white = encode_rgb(255, 255, 255);
 	red = encode_rgb(255, 0, 0);
 	color = red;
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "o55k");
+	fdf.mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(fdf.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "o55k");
 	i = 0;
 	map = load_map(MAP_FILE);
+	fdf.img.mlx_img = mlx_new_image(fdf.mlx_ptr,WINDOW_WIDTH ,WINDOW_HEIGHT);
+	fdf.img.addr = mlx_get_data_addr(fdf.img.mlx_img, &fdf.img.bpp, &fdf.img.line_len, &fdf.img.endian);
 	while (i < map->size)
 	{
 		a = map->os_u + map->p[i].p_2dv[u];
 		b = map->os_u + map->p[i].p_2dv[v];
-		mlx_pixel_put(mlx_ptr, win_ptr, a, b, color);
+		img_pix_put(fdf.img.mlx_img, a, b, color);
 		i++;
 	}
 	i = 0;
-	while (i <= (map->size - 1))
+	while (i < map->size)
 	{
 		u0 = map->os_u + map->p[i].p_2dv[u];
 		u1 = map->os_u + map->p[i + 1].p_2dv[u];
 		v0 = map->os_u + map->p[i].p_2dv[v];
 		v1 = map->os_u + map->p[i + 1].p_2dv[v];
 		if (map->p[i].p_3dv[y] == map->p[i + 1].p_3dv[y])
-			bresenham(u0, u1, v0, v1, mlx_ptr, win_ptr, color);
+			bresenham(fdf.img, u0, u1, v0, v1, color);
 		if (i > 18) {
 			u_above = map->os_u + map->p[i - 19].p_2dv[u]; //19 is hardcoding the next line???
 			v_above = map->os_u + map->p[i - 19].p_2dv[v];
-			bresenham(u0, u_above, v0, v_above, mlx_ptr, win_ptr, color);
+			bresenham(fdf.img, u0, u_above, v0, v_above, color);
 		}
 		i++;
 	}
-	printf("offset is: %d\n", map->os_u);
+	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img.mlx_img, 0, 0);
 	while(1);
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
+	mlx_destroy_window(fdf.mlx_ptr, win_ptr);
+	mlx_destroy_display(fdf.mlx_ptr);
 	free(win_ptr);
-	free(mlx_ptr);
+	free(fdf.mlx_ptr);
 	free(map->p);
 	free(map);
 }

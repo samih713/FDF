@@ -19,6 +19,23 @@
 
 # define RED_PIXEL 0xFF0000
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_fdf
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+}	t_fdf;
+
+
 //helpers functions
 int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue); // still needs to be added
 int	is_number(char c);

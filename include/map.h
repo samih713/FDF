@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/16 16:26:50 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:34:31 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define MAP_H
 
 #include <stdbool.h>
-
+#include "fdf.h"
 // color
 
 // Map
@@ -38,9 +38,11 @@ enum coordinates_2d
 	v
 };
 
+enum map_size {MWIDTH, MHEIGHT};
 typedef struct t_map
 {
-	int size; // point count
+	int *dimensions;
+	int size;; // point count
 	int os_u; // offset
 	int max_height;
 	bool color;
@@ -48,10 +50,12 @@ typedef struct t_map
 } t_map;
 
 // Map functions
-t_map *load_map(char *map_path);
+t_map	*load_map(char *map_path);
 // projection
-void project_iso(t_map *map, m_point *points, int size);
+void	project_iso(t_map *map, m_point *points, int size);
+// img
+void	img_pix_put(t_img *img, int a, int b, int color);
 // bresenham
-void bresenham(int x0, int x1, int y0, int y1, void *mlx_ptr, void *win_ptr, int color);
+void	bresenham(t_img img, int x0, int x1, int y0, int y1, int color);
 
 #endif

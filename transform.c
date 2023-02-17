@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/15 15:28:19 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:59:37 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	project_iso(t_map *map, m_point *points, int size)
 	map->os_u = 0;
 	while(i < size)
 	{
-		points[i].p_2dv[u] = (points[i].p_3dv[x] - points[i].p_3dv[y]) *  cos(0.523599);
-		points[i].p_2dv[v] = -points[i].p_3dv[z] + (points[i].p_3dv[x] + points[i].p_3dv[y]) *  cos(0.523599);
+		points[i].p_2dv[u] = (points[i].p_3dv[x] - points[i].p_3dv[y]) * cos(0.523599);
+		points[i].p_2dv[v] = -points[i].p_3dv[z] + (points[i].p_3dv[x] + points[i].p_3dv[y]) * cos(0.523599);
 
 		if (map->os_u > points[i].p_2dv[u])
 			map->os_u = points[i].p_2dv[u];

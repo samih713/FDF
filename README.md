@@ -12,6 +12,8 @@ Given a map in fdf format draws the map in isometric view with lines joining the
 
 > [ ]	remove unnecessary files
 
+> [ ]	Hooks
+
 > [ ]	organize project better
 
 > [ ]	test all maps
@@ -24,9 +26,8 @@ Given a map in fdf format draws the map in isometric view with lines joining the
 
 > [ ]	errors
 
-> [ ]	fix hard-coding below line
+> [ ]	fix hard-coding vertical lines
 
 
 - changes
-  lines both directions
-  height to color ratio
+  added map->dimensions[2] for width and height for image centering

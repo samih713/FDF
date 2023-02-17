@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/16 16:45:16 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/17 15:53:29 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 #include "map.h"
 #include "get_next_line.h"
 
-static int	size_of_map(char *map_path);
-static void load_points(t_map *map, m_point *points, char *map_path); // just give it map dude
-
+static int	*size_of_map(char *map_path, t_map *map);
+static void load_points(t_map *map, m_point *points, char *map_path); // just give it map du
 t_map	*load_map(char *map_path)
 {
 	t_map	*map;
@@ -24,7 +23,9 @@ t_map	*load_map(char *map_path)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (0); // change to mem error
-	map->size = size_of_map(map_path);
+	map->dimensions = malloc(sizeof(int) * 2);
+	map->dimensions = size_of_map(map_path, map);
+	map->size = map->dimensions[MWIDTH] * map->dimensions[MHEIGHT];
 	map->p = malloc(sizeof(m_point) * map->size);
 	if(!map->p)
 		return (0);
@@ -33,15 +34,15 @@ t_map	*load_map(char *map_path)
 	return map;
 }
 
-static int	size_of_map(char *map_path)
+static int	*size_of_map(char *map_path, t_map *map)
 {
-	int		size;
 	int		i;
 	int		map_fd;
 	char	*line;
 
 	map_fd = open(map_path, O_RDONLY);
-	size = 0;
+	map->dimensions[MWIDTH] = 0;
+	map->dimensions[MHEIGHT] = 0;
 	line = get_next_line(map_fd);
 	while (line && *line)
 	{
@@ -50,18 +51,20 @@ static int	size_of_map(char *map_path)
 		{
 			if (is_number(line[i]))
 			{
-				size++;
+				map->dimensions[MWIDTH]++;
 				while (is_number(line[i]))
 					i++;
 			}
 			i++;
 		}
 		free(line);
+		map->dimensions[MHEIGHT]++;
 		line = get_next_line(map_fd);
 	}
+	map->dimensions[MWIDTH] /= map->dimensions[MHEIGHT]; //
 	free(line);
 	close(map_fd);
-	return (size);
+	return (map->dimensions);
 }
 
 static void load_points(t_map *map, m_point *points, char *map_path)

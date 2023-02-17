@@ -6,46 +6,16 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/16 16:58:43 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:34:43 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* function to draw the lines */
 
 #include "fdf.h"
+#include "map.h"
 
-/* void bresenham(int x0, int x1, int y0, int y1, void *mlx_ptr, void *win_ptr, int color)
-{
-	int dx;
-	int dy;
-	int p;
-	int x;
-	int y;
-
-	x = x0;
-	y = y0;
-	dx = x1 - x0;
-	dy = y1 - y0;
-
-	p = 2 * (dy - dx); // error
-	while (x <= x1)
-	{
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
-		if (p >= 0)
-		{
-			if (y0 < y1)
-				y++;
-			else
-				y--;
-			p = p + (2 * dy) - (2 * dx);
-		}
-		else
-			p = p + (2 * dy);
-		x++;
-	}
-} */
-
-void bresenham(int x0, int x1, int y0, int y1, void *mlx_ptr, void *win_ptr, int color)
+void bresenham(t_img img, int x0, int x1, int y0, int y1, int color)
 {
 	int x, y;
 	x = x0;
@@ -71,7 +41,7 @@ void bresenham(int x0, int x1, int y0, int y1, void *mlx_ptr, void *win_ptr, int
 	}
 	p = 2 * (dy - dx);
 	while (x <= x1) {
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
+		img_pix_put(img.mlx_img, x, y, color);
 		if (p < 0) {
 			if (ch == 1)
 				y += sy;
