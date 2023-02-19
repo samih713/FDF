@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/17 17:34:31 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:03:38 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	project_iso(t_map *map, m_point *points, int size);
 // img
 void	img_pix_put(t_img *img, int a, int b, int color);
 // bresenham
-void	bresenham(t_img img, int x0, int x1, int y0, int y1, int color);
+void	bresenham(t_img *img, int x0, int x1, int y0, int y1, int color);
 
 #endif

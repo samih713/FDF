@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/17 17:34:43 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:48:34 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "fdf.h"
 #include "map.h"
 
-void bresenham(t_img img, int x0, int x1, int y0, int y1, int color)
+void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
 {
 	int x, y;
 	x = x0;
@@ -41,7 +41,7 @@ void bresenham(t_img img, int x0, int x1, int y0, int y1, int color)
 	}
 	p = 2 * (dy - dx);
 	while (x <= x1) {
-		img_pix_put(img.mlx_img, x, y, color);
+		img_pix_put(img, x, y, color);
 		if (p < 0) {
 			if (ch == 1)
 				y += sy;
