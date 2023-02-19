@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/19 16:03:38 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:25:11 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,5 @@ typedef struct t_map
 t_map	*load_map(char *map_path);
 // projection
 void	project_iso(t_map *map, m_point *points, int size);
-// img
-void	img_pix_put(t_img *img, int a, int b, int color);
-// bresenham
-void	bresenham(t_img *img, int x0, int x1, int y0, int y1, int color);
 
 #endif
