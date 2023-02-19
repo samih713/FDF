@@ -8,8 +8,16 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <math.h>
 #include "get_next_line.h"
+#include "map.h"
+#include "draw.h"
 
+
+// TODO fix enums (unify they are all over the place)
+// TODO adjustable window size
+// TODO error handling
+// TODO accept correct format only
 // macros
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 800
@@ -18,22 +26,7 @@
 # define MLX_ERROR 1
 
 # define RED_PIXEL 0xFF0000
-
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-
-typedef struct s_fdf
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-}	t_fdf;
+# define WHITE_PIXEL 0xFFFFFF
 
 
 //helpers functions
