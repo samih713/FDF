@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/17 15:53:29 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:59:39 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,3 +111,4 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	free(line);
 	close(map_fd);
 }
+

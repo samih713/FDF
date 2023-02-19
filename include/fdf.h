@@ -17,7 +17,7 @@
 // TODO fix enums (unify they are all over the place)
 // TODO adjustable window size
 // TODO error handling
-
+// TODO accept correct format only
 // macros
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 800
