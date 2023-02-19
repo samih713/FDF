@@ -8,9 +8,15 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <math.h>
 #include "get_next_line.h"
 #include "map.h"
 #include "draw.h"
+
+
+// TODO fix enums (unify they are all over the place)
+// TODO adjustable window size
+// TODO error handling
 
 // macros
 # define WINDOW_WIDTH 800

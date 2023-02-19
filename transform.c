@@ -6,16 +6,15 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/17 15:59:37 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/19 21:36:02 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* 3d vector to 2d transformations */
 
-#include "map.h"
-#include <math.h>
-#include <stdio.h>
+#include "fdf.h"
 
+// TODO change offset implementation to more dynamic
 /* Isometric transformation */
 void	project_iso(t_map *map, m_point *points, int size)
 {

@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/19 20:44:20 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:53:57 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(void)
 	fdf.mlx_ptr = mlx_init();
 	if (!fdf.mlx_ptr)
 		return 0;
-	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "o55k");
+	fdf.win_ptr = mlx_new_window(fdf.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, MAP_FILE);
 	fdf.img->mlx_img = mlx_new_image(fdf.mlx_ptr,WINDOW_WIDTH ,WINDOW_HEIGHT);
 	map = load_map(MAP_FILE);
 	fdf.img->addr = mlx_get_data_addr(fdf.img->mlx_img, &fdf.img->bpp, &fdf.img->line_len, &fdf.img->endian);

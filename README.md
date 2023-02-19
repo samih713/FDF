@@ -28,6 +28,5 @@ Given a map in fdf format draws the map in isometric view with lines joining the
 
 > [ ]	fix hard-coding vertical lines
 
+> [ ] Change window name to name of map without path
 
-- changes
-  added map->dimensions[2] for width and height for image centering
