@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:12:56 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/20 02:37:25 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:16:00 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	render_img(t_fdf *fdf, t_map *map)
 	{
 		point[x] = map->os_u + map->p[i].p_2dv[u];
 		point[x_nxt] = map->os_u + map->p[i + 1].p_2dv[u];
-		point[y] = map->os_u + map->p[i].p_2dv[v];
+		point[y] = map->os_v + map->p[i].p_2dv[v];
 		point[y_nxt] = map->os_v + map->p[i + 1].p_2dv[v];
 		if (map->p[i].p_3dv[y] == map->p[i + 1].p_3dv[y])
 			bresenham(fdf->img, point[x], point[x_nxt], point[y], point[y_nxt], RED_PIXEL);

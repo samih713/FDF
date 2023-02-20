@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/20 02:49:12 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:17:42 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 #include "fdf.h"
 
 // TODO change offset implementation to more dynamic
+
+// TODO move these somewhere else
+enum RANGE
+{
+	RANGE,
+	MIN,
+	MAX
+};
+//
+
 static void find_range(t_map *map, int *range, int index);
 /* Isometric transformation */
 void	project_iso(t_map *map, m_point *p, int size)
@@ -32,28 +42,28 @@ void	project_iso(t_map *map, m_point *p, int size)
 	}
 	find_range(map, range_u, u);
 	find_range(map, range_v, v);
-	map->os_u = (WINDOW_WIDTH - range_u[0]) / 2;
-	map->os_v = (WINDOW_HEIGHT - range_v[0]) / 2;
+	// * proper centering is is (window center) - (data range center)
+	map->os_u = (WINDOW_WIDTH / 2) - (range_u[MIN] + (range_u[RANGE] / 2));
+	map->os_v = (WINDOW_HEIGHT / 2) - (range_v[MIN] + (range_v[RANGE] / 2));
 }
+// range/2
 
+
+// *range[range, MIN, MAX]
 static void find_range(t_map *map, int *range, int index)
 {
 	int	i;
-	int	min;
-	int	max;
 
 	i = 0;
-	min = map->p[i].p_2dv[index];
-	max = map->p[i].p_2dv[index];
+	range[MIN] = map->p[i].p_2dv[index];
+	range[MAX] = map->p[i].p_2dv[index];
 	while(i < map->size)
 	{
-		if (map->p[i].p_2dv[index] > max)
-			max = map->p[i].p_2dv[index];
-		if (map->p[i].p_2dv[index] < min)
-			min = map->p[i].p_2dv[index];
+		if (map->p[i].p_2dv[index] > range[MAX])
+			range[MAX] = map->p[i].p_2dv[index];
+		if (map->p[i].p_2dv[index] < range[MIN])
+			range[MIN] = map->p[i].p_2dv[index];
 		i++;
 	}
-	range[1] = min;
-	range[2] = max;
-	range[0] = max - min;
+	range[RANGE] = range[MAX] - range[MIN];
 }
