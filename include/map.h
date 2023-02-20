@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/20 01:11:44 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:28:47 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ enum coordinates_2d
 enum map_size {MWIDTH, MHEIGHT};
 typedef struct t_map
 {
-	int *dimensions;
+	int *dim;
 	int size; // point count
 	int os_u; // offset
 	int os_v; // offset

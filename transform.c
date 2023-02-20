@@ -6,15 +6,13 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/20 17:17:42 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:19:07 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* 3d vector to 2d transformations */
 
 #include "fdf.h"
-
-// TODO change offset implementation to more dynamic
 
 // TODO move these somewhere else
 enum RANGE
@@ -49,7 +47,7 @@ void	project_iso(t_map *map, m_point *p, int size)
 // range/2
 
 
-// *range[range, MIN, MAX]
+// * range[range, MIN, MAX]
 static void find_range(t_map *map, int *range, int index)
 {
 	int	i;

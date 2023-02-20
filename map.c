@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/20 16:38:14 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:28:47 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_map	*load_map(char *map_path)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (0); // change to mem error
-	map->dimensions = malloc(sizeof(int) * 2);
-	map->dimensions = size_of_map(map_path, map);
-	map->size = map->dimensions[MWIDTH] * map->dimensions[MHEIGHT];
+	map->dim = malloc(sizeof(int) * 2);
+	map->dim = size_of_map(map_path, map);
+	map->size = map->dim[MWIDTH] * map->dim[MHEIGHT];
 	map->p = malloc(sizeof(m_point) * map->size);
 	if(!map->p)
 		return (0);
@@ -44,8 +44,8 @@ static int	*size_of_map(char *map_path, t_map *map)
 	char	*line;
 
 	map_fd = open(map_path, O_RDONLY);
-	map->dimensions[MWIDTH] = 0;
-	map->dimensions[MHEIGHT] = 0;
+	map->dim[MWIDTH] = 0;
+	map->dim[MHEIGHT] = 0;
 	line = get_next_line(map_fd);
 	while (line && *line)
 	{
@@ -54,20 +54,20 @@ static int	*size_of_map(char *map_path, t_map *map)
 		{
 			if (is_number(line[i]))
 			{
-				map->dimensions[MWIDTH]++;
+				map->dim[MWIDTH]++;
 				while (is_number(line[i]))
 					i++;
 			}
 			i++;
 		}
 		free(line);
-		map->dimensions[MHEIGHT]++;
+		map->dim[MHEIGHT]++;
 		line = get_next_line(map_fd);
 	}
-	map->dimensions[MWIDTH] /= map->dimensions[MHEIGHT]; //
+	map->dim[MWIDTH] /= map->dim[MHEIGHT]; //
 	free(line);
 	close(map_fd);
-	return (map->dimensions);
+	return (map->dim);
 }
 
 static void load_points(t_map *map, m_point *points, char *map_path)

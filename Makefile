@@ -6,7 +6,7 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 18:59:27 by sabdelra          #+#    #+#              #
-#    Updated: 2023/02/19 21:04:18 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/02/20 17:23:28 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ NAME:= fdf
 all: $(NAME) gnl
 
 test: test.c all
-	@$(CC) $< $(NAME) -I $(INC_DIR) -L $(LIB_DIR) -lgnl $(MLX_FLAGS) -o $@ -g
+	@$(CC) $< $(NAME) -I $(INC_DIR) -L $(LIB_DIR) -lgnl $(MLX_FLAGS) -o $@ -ggdb3
 	@echo "$(COLOR_BLUE)>>test is ready$(COLOR_END)"
 
 $(NAME): $(OBJ)
@@ -59,6 +59,10 @@ clean:
 	@rm -f $(OBJ)
 
 re: fclean all
+
+# * remove later
+retest: fclean test
+# * **************
 
 .PHONY: all test fclean clean re
 
