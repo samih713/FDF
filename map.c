@@ -6,13 +6,11 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/20 17:28:47 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:13:55 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "map.h"
-#include "get_next_line.h"
 
 // TODO cleanup this files a mess
 
@@ -24,14 +22,13 @@ t_map	*load_map(char *map_path)
 	t_map	*map;
 
 	map = malloc(sizeof(t_map));
-	if (!map)
-		return (0); // change to mem error
+	mem_check(map);
 	map->dim = malloc(sizeof(int) * 2);
+	mem_check(map->dim);
 	map->dim = size_of_map(map_path, map);
 	map->size = map->dim[MWIDTH] * map->dim[MHEIGHT];
 	map->p = malloc(sizeof(m_point) * map->size);
-	if(!map->p)
-		return (0);
+	mem_check(map->p);
 	load_points(map, map->p, map_path);
 	project_iso(map, map->p, map->size);
 	return map;

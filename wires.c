@@ -6,14 +6,15 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/19 20:33:01 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 20:42:02 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* function to draw the lines */
 
 #include "fdf.h"
-
+// TODO reduce function arguments and function size
+// TODO try it with floats
 void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
 {
 	int x, y;
@@ -41,7 +42,7 @@ void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
 	p = 2 * (dy - dx);
 	while (x <= x1) {
 		img_pix_put(img, x, y, color);
-		if (p < 0) {
+		if (p <= 0) {
 			if (ch == 1)
 				y += sy;
 			else

@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/20 17:19:07 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:30:20 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 
 #include "fdf.h"
 
-// TODO move these somewhere else
-enum RANGE
-{
-	RANGE,
-	MIN,
-	MAX
-};
-//
-
 static void find_range(t_map *map, int *range, int index);
 /* Isometric transformation */
+// TODO take angle for projection as an argument
 void	project_iso(t_map *map, m_point *p, int size)
 {
 	int	i;
@@ -44,8 +36,6 @@ void	project_iso(t_map *map, m_point *p, int size)
 	map->os_u = (WINDOW_WIDTH / 2) - (range_u[MIN] + (range_u[RANGE] / 2));
 	map->os_v = (WINDOW_HEIGHT / 2) - (range_v[MIN] + (range_v[RANGE] / 2));
 }
-// range/2
-
 
 // * range[range, MIN, MAX]
 static void find_range(t_map *map, int *range, int index)
