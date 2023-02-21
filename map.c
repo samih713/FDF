@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/21 04:07:50 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:01:31 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static void	*size_of_map(char *map_path, t_map *map)
 		map->dim[MHEIGHT]++;
 		line = get_next_line(map_fd);
 	}
+	empty_check(map->dim[MHEIGHT], map);
 	map->dim[MWIDTH] = map->size / map->dim[MHEIGHT];
 	free(line);
 	close(map_fd);

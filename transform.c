@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/21 04:39:52 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:13:35 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	project_iso(t_map *map, m_point *p, int size)
 	while(i < size)
 	{
 		p[i].p_2dv[u] = (p[i].p_3dv[x] - p[i].p_3dv[y]) * cos(0.523599);
-		p[i].p_2dv[v] = -p[i].p_3dv[z] + (p[i].p_3dv[x] + p[i].p_3dv[y]) * cos(0.523599);
+		p[i].p_2dv[v] = -p[i].p_3dv[z] + (p[i].p_3dv[x] + p[i].p_3dv[y]) * sin(0.523599);
 		i++;
 	}
 	find_range(map, range_u, u);

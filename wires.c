@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/21 04:43:51 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:45:23 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,32 @@ void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
 		}
 	}
 }
+
+// ! try with floats
+/* void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
+{
+	int x, y;
+	float dx, dy, m;
+
+	if (x1 > x0) {
+		x = x0;
+		y = y0;
+		dx = x1 - x0;
+		dy = y1 - y0;
+	}
+	else {
+		x = x1;
+		x1 = x0;
+		y = y1;
+		y1 = y0;
+		dx = x0 - x;
+		dy = y0 - y;
+	}
+	m = dy/dx;
+	while (x <= x1)
+	{
+		img_pix_put(img, x, y, color);
+		x++;
+		y = (m * x);
+	}
+} */

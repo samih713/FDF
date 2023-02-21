@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:27:24 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/21 01:41:50 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:01:10 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 // TODO access to check if file exists and accessable?
 
-
-// ! access allowed?
-// ! is exit allowed?
 void	mem_check(void *allocated_memory)
 {
 	if (!allocated_memory)
@@ -40,6 +37,16 @@ void	open_check(int map_fd)
 	if (map_fd < 0)
 	{
 		write(2, "Invalid path\n", 14);
+		exit (EXIT_FAILURE);
+	}
+}
+
+void	empty_check(int map_size, t_map *map)
+{
+	if (!map_size)
+	{
+		write(2, "Empty map\n", 11);
+		free(map);
 		exit (EXIT_FAILURE);
 	}
 }
