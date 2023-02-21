@@ -15,31 +15,35 @@
 #include "draw.h"
 
 // * Priority
+// TODO handle hex input (height,0xcolor or 0xcolor)
 // TODO segfault when scale is too large or map is too large
 // TODO events (checkout github page how to handle keypresses ...)
-// TODO handle hex input
-// TODO fix lines not reaching the end (elem2 for example shows the error)
-// TODO error handling
-// TODO program name should be fdf
 // TODO parallel projection
+// TODO program name should be fdf
 // TODO Testing (brainstorm)
+// TODO error handling
 // * extra
-// TODO zoom
 // TODO add menu with controls
+// TODO window title based on map
 // TODO window size based on drawing? or scale?
 // TODO adjustable window size
 // * before submission
 // TODO file clean-up
 // TODO norminette
 // TODO Makefile
+// *events
+// TODO escape and basic controls from subject
+// TODO zoom in out
+// TODO move map (u,d,l,r)
 // macros
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
-# define SCALE 12 // change implementation
+# define SCALE 5 // change implementation
 
 // ! wtf is this for?
 # define MLX_ERROR 1
 
+// ! testing
 # define RED_PIXEL 0xFF0000
 # define WHITE_PIXEL 0xFFFFFF
 

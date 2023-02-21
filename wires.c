@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/21 21:19:56 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:14:54 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
 			x += sx;
 			p += (2 * dy) - (2 * dx);
 		}
-		printf("x: %d  y: %d\n", x, y);
 		img_pix_put(img, x, y, color);
 	}
 }
