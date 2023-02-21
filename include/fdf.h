@@ -15,6 +15,7 @@
 #include "draw.h"
 
 // TODO segfault when scale is too large or map is too large
+// TODO handle hex input
 // TODO events
 // TODO handle an empty map
 // TODO fix lines not reaching the end
@@ -32,7 +33,7 @@
 // macros
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 1024
-# define SCALE 3 // change implementation
+# define SCALE 2 // change implementation
 
 // TODO use this if exit is not allowed
 # define MLX_ERROR 1
