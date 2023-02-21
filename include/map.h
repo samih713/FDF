@@ -6,19 +6,14 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/19 20:25:11 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 04:37:00 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_H
 #define MAP_H
 
-#include <stdbool.h>
 #include "fdf.h"
-// color
-
-// Map
-#define MAP_FILE "/home/eva001/42/FDF/maps/maps/test_maps/42.fdf"
 
 typedef struct m_point
 {
@@ -26,25 +21,38 @@ typedef struct m_point
 	int p_3dv[3];
 } m_point;
 
+// * 3d point co-ordinates
 enum coordinates_3d
 {
 	x,
 	y,
 	z
 };
+// * 2d point co-ordinates
 enum coordinates_2d
 {
 	u,
 	v
 };
-
-enum map_size {MWIDTH, MHEIGHT};
-typedef struct t_map
+// * map dimensions
+enum map_size {
+	MWIDTH,
+	MHEIGHT
+};
+// * determine offset when projecting
+enum RANGE
 {
-	int *dimensions;
-	int size;; // point count
+	RANGE,
+	MIN,
+	MAX
+};
+typedef struct s_map
+{
+	int dim[2];
+	int size; // point count
 	int os_u; // offset
-	int max_height;
+	int os_v; // offset
+	int max_height; // TODO use for color
 	bool color;
 	m_point *p; // array of structs
 } t_map;
