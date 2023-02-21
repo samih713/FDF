@@ -16,8 +16,8 @@
 
 // * Priority
 // TODO segfault when scale is too large or map is too large
+// TODO events (checkout github page how to handle keypresses ...)
 // TODO handle hex input
-// TODO events
 // TODO fix lines not reaching the end (elem2 for example shows the error)
 // TODO error handling
 // TODO program name should be fdf
@@ -33,9 +33,9 @@
 // TODO norminette
 // TODO Makefile
 // macros
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
-# define SCALE 5 // change implementation
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
+# define SCALE 12 // change implementation
 
 // ! wtf is this for?
 # define MLX_ERROR 1
