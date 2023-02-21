@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/20 21:30:20 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 04:39:52 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	project_iso(t_map *map, m_point *p, int size)
 	// * proper centering is is (window center) - (data range center)
 	map->os_u = (WINDOW_WIDTH / 2) - (range_u[MIN] + (range_u[RANGE] / 2));
 	map->os_v = (WINDOW_HEIGHT / 2) - (range_v[MIN] + (range_v[RANGE] / 2));
+	printf("range_v %d\n", range_v[RANGE]);
 }
 
 // * range[range, MIN, MAX]

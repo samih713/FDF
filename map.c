@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/20 21:13:55 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/21 04:07:50 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // TODO cleanup this files a mess
 
-static int	*size_of_map(char *map_path, t_map *map);
+static void	*size_of_map(char *map_path, t_map *map);
 static void load_points(t_map *map, m_point *points, char *map_path); // just give it map du
 
 t_map	*load_map(char *map_path)
@@ -23,9 +23,8 @@ t_map	*load_map(char *map_path)
 
 	map = malloc(sizeof(t_map));
 	mem_check(map);
-	map->dim = malloc(sizeof(int) * 2);
 	mem_check(map->dim);
-	map->dim = size_of_map(map_path, map);
+	size_of_map(map_path, map);
 	map->size = map->dim[MWIDTH] * map->dim[MHEIGHT];
 	map->p = malloc(sizeof(m_point) * map->size);
 	mem_check(map->p);
@@ -34,14 +33,15 @@ t_map	*load_map(char *map_path)
 	return map;
 }
 
-static int	*size_of_map(char *map_path, t_map *map)
+static void	*size_of_map(char *map_path, t_map *map)
 {
 	int		i;
 	int		map_fd;
 	char	*line;
 
 	map_fd = open(map_path, O_RDONLY);
-	map->dim[MWIDTH] = 0;
+	open_check(map_fd);
+	map->size = 0;
 	map->dim[MHEIGHT] = 0;
 	line = get_next_line(map_fd);
 	while (line && *line)
@@ -51,7 +51,7 @@ static int	*size_of_map(char *map_path, t_map *map)
 		{
 			if (is_number(line[i]))
 			{
-				map->dim[MWIDTH]++;
+				map->size++;
 				while (is_number(line[i]))
 					i++;
 			}
@@ -61,7 +61,7 @@ static int	*size_of_map(char *map_path, t_map *map)
 		map->dim[MHEIGHT]++;
 		line = get_next_line(map_fd);
 	}
-	map->dim[MWIDTH] /= map->dim[MHEIGHT]; //
+	map->dim[MWIDTH] = map->size / map->dim[MHEIGHT];
 	free(line);
 	close(map_fd);
 	return (map->dim);
@@ -85,7 +85,7 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	{
 		j = 0;
 		col_number = 0;
-		while (line [j])
+		while (line [j] && i < map->size)
 		{
 			points[i].p_3dv[z] = 0;
 			if (is_number(line[j]))

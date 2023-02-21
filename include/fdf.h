@@ -14,21 +14,25 @@
 #include "map.h"
 #include "draw.h"
 
-// TODO maps are not fixed width, maybe make mwidth an array?
 // TODO segfault when scale is too large or map is too large
 // TODO events
+// TODO handle an empty map
 // TODO fix lines not reaching the end
 // TODO error handling
+// TODO program name should be fdf
+// TODO parallel projection
 // TODO zoom
 
+// TODO norminette
+// TODO Testing (brainstorm)
 // TODO change the isometeric angle
 // TODO add menu with controls
 // TODO window size based on drawing? or scale?
 // TODO adjustable window size
 // macros
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
-# define SCALE 10 // change implementation
+# define WINDOW_WIDTH 1024
+# define WINDOW_HEIGHT 1024
+# define SCALE 3 // change implementation
 
 // TODO use this if exit is not allowed
 # define MLX_ERROR 1
@@ -45,5 +49,6 @@ unsigned int	format_check(char *map_path, char *format);
 // *ERORR handling
 void	mem_check(void *allocated_memory);
 void	arg_check(int argc);
+void	open_check(int map_fd);
 
 #endif
