@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/21 21:21:56 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 03:51:51 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static void	*size_of_map(char *map_path, t_map *map);
 static void load_points(t_map *map, m_point *points, char *map_path); // just give it map du
+static void get_color(int *color, char *line, int *j);
 
 t_map	*load_map(char *map_path)
 {
@@ -99,8 +100,16 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 					points[i].p_3dv[z] += line[j] - '0';
 					j++;
 				}
+				if (line[j] == ',')
+				{
+					j += 3;
+					get_color(&points[i].color, line, &j); // skip ,0x
+				}
+				else
+					points[i].color = WHITE_PIXEL;
 				if (points[i].p_3dv[z] > map->max_height)
 					map->max_height = points[i].p_3dv[z];
+
 				i++;
 			}
 			j++;
@@ -111,4 +120,22 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	}
 	free(line);
 	close(map_fd);
+}
+
+static void get_color(int *color, char *line, int *j)
+{
+	int		i;
+	char	*hex;
+
+	*color = 0;
+	hex = "0123456789ABCDEF";
+	while (line[*j + 1] && line[*j] != ' ')
+	{
+		i = 0;
+		while (hex[i] != line[*j])
+			i++;
+		*color *= 10;
+		*color += i;
+		(*j)++;
+	}
 }

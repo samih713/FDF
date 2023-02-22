@@ -6,12 +6,11 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/22 00:08:12 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 03:57:53 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-/* just general testing make a better main for final version */
+//* just general testing make a better main for final version */
 
 #include "fdf.h"
 #include <stdio.h>
@@ -24,6 +23,7 @@ int main(int argc, char **argv)
 	arg_check(argc);
 	format_check(argv[1], ".fdf");
 	map = load_map(argv[1]);
+	printf("map size is%d", map->size);
 	// * mlx initiation
 	fdf.mlx_ptr = mlx_init();
 	mem_check(fdf.mlx_ptr);

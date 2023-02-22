@@ -18,6 +18,7 @@
 		"type_traits": "c",
 		"utility": "c",
 		"new": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"stdbool.h": "c"
 	}
 }

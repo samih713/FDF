@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/21 04:37:00 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 01:54:29 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct m_point
 {
 	int p_2dv[2];
 	int p_3dv[3];
+	int color;
 } m_point;
 
 // * 3d point co-ordinates
@@ -53,7 +54,6 @@ typedef struct s_map
 	int os_u; // offset
 	int os_v; // offset
 	int max_height; // TODO use for color
-	bool color;
 	m_point *p; // array of structs
 } t_map;
 
