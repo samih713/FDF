@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/22 03:51:51 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 05:00:28 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	*size_of_map(char *map_path, t_map *map)
 			if (is_number(line[i]))
 			{
 				map->size++;
-				while (is_number(line[i]))
+				while (is_number(line[i]) || is_hex(line[i]))
 					i++;
 			}
 			i++;
@@ -122,17 +122,20 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	close(map_fd);
 }
 
+// ! optimize this function
 static void get_color(int *color, char *line, int *j)
 {
 	int		i;
-	char	*hex;
+	char	*hex_u;
+	char	*hex_l;
 
 	*color = 0;
-	hex = "0123456789ABCDEF";
+	hex_u = "0123456789ABCDEF";
+	hex_l = "0123456789abcdef";
 	while (line[*j + 1] && line[*j] != ' ')
 	{
 		i = 0;
-		while (hex[i] != line[*j])
+		while (hex_u[i] != line[*j] && hex_l[i] != line[*j])
 			i++;
 		*color *= 10;
 		*color += i;

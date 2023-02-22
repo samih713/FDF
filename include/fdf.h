@@ -17,7 +17,7 @@
 // macros
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
-# define SCALE 1 // change implementation
+# define SCALE 3 // change implementation
 
 // ! wtf is this for?
 # define MLX_ERROR 1
@@ -30,6 +30,7 @@
 unsigned int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue); // still needs to be added
 unsigned int	is_number(char c);
 unsigned int	format_check(char *map_path, char *format);
+unsigned int	is_hex(char c);
 
 // *ERORR handling
 void	mem_check(void *allocated_memory);
