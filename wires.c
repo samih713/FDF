@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/22 20:13:32 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:53:04 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,61 +16,94 @@
 // TODO reduce function arguments and function size
 // TODO color start end point maybe flipped maybe with ch variable
 // TODO change this to accept point
-void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
+static int	find_color(int *c_point, m_point *p0, m_point *p1);
+static int	load_color(int s, int e, float p);
+
+void	bresenham(t_img *img, m_point *p0, m_point *p1)
 {
-	int x, y;
-	// int c_color; // current color
-	x = x0;
-	y = y0;
-	//
-	int dx, dy;
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
-	//
-	int sx, sy;
-	if (x1 < x0) sx = -1;
-	else sx=1;
-	if (y1 < y0) sy = -1;
-	else sy=1;
-	//
+	int cp[2];
+	int d[2];
+	int s[2];
+	int cc;
 	int p, temp, ch;
+
+	cp[x] = p0->p_2dv[u];
+	cp[y] = p0->p_2dv[v];
+	d[x] = abs(p1->p_2dv[u] - p0->p_2dv[u]);
+	d[y] = abs(p1->p_2dv[v] - p0->p_2dv[v]);
+	if (p1->p_2dv[u] < p0->p_2dv[u])
+		s[x] = -1;
+	else
+		s[x]=1;
+	if (p1->p_2dv[v] < p0->p_2dv[v])
+		s[y] = -1;
+	else
+		s[y]=1;
 	ch = 0;
-	if (dy > dx) {
-		temp = dx;
-		dx = dy;
-		dy = temp;
+	if (d[y] > d[x])
+	{
+		temp = d[x];
+		d[x] = d[y];
+		d[y] = temp;
 		ch = 1;
 	}
-	p = (2 * dy) - dx;
-	while (x < x1) {
-		if (p <= 0) {
+	p = (2 * d[y]) - d[x];
+	while (cp[x] < p1->p_2dv[u])
+	{
+		if (p <= 0)
+		{
 			if (ch)
-				y += sy;
+				cp[y] += s[y];
 			else
-				x += sx;
-			p += 2 * dy;
+				cp[x] += s[x];
+			p += 2 * d[y];
 		}
-		else {
-			y += sy;
-			x += sx;
-			p += (2 * dy) - (2 * dx);
+		else
+		{
+			cp[y] += s[y];
+			cp[x] += s[x];
+			p += (2 * d[y]) - (2 * d[x]);
 		}
-		img_pix_put(img, x, y, color);
+		cc = find_color(cp, p0, p1);
+		img_pix_put(img, cp[x], cp[y], cc);
 	}
 }
 
 // ! using the bigger delta
 // find_color(color, delta)
 // * finds color as a percentage of current point
-/* static int	find_color(int *color, int *delta)
+// TODO optimize by skipping if its the start point or end point
+static int	find_color(int *c_point, m_point *p0, m_point *p1)
 {
-	int	percent;
-	// find %
-	if (abs(dx) > abs(dy))
+	double	range;
+	int	sc;
+	int	ec;
+	int	cc[3];
+	float	p; //position of the point as a percentage
+
+	if (p0->color == p1->color)
+		return(p0->color);
+	if (c_point[x] > p0->p_2dv[u])
 	{
-
+		range = p1->p_2dv[u] - p0->p_2dv[u];
+		p = (float)(c_point[x] - p0->p_2dv[u]) / (float)range;
+		sc = p0->color;
+		ec = p1->color;
 	}
-	//
-	int r, g, b;
+	else
+	{
+		range = p0->p_2dv[u] - p1->p_2dv[u];
+		p = (float)(c_point[x] - p1->p_2dv[u]) / (float)range;
+		sc = p1->color;
+		ec = p0->color;
+	}
+	cc[red] = load_color((sc >> 16) & 0xFF, (ec >> 16) & 0xFF, p);
+	cc[green] = load_color((sc >> 8) & 0xFF, (ec >> 8) & 0xFF, p);
+	cc[blue] = load_color((sc & 0xFF), (ec & 0xFF), p);
+	return((cc[red] << 16) | (cc[green] << 8) | cc[blue]);
+}
 
-} */
+static int	load_color(int s, int e, float p)
+{
+	return (((1 - p) * s) + (p * e));
+}

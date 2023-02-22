@@ -49,6 +49,8 @@ void	empty_check(int map_size, t_map *map);
 // TODO error handling
 // TODO Testing (brainstorm)
 // * extra
+// TODO move check if you can move the image within
+// doesnt have to be same dimensions as window maybe
 // TODO zoom
 // TODO parallel projection
 // TODO add menu with controls

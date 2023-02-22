@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:16:22 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/22 20:13:49 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:37:56 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_fdf
 }	t_fdf;
 
 void	img_pix_put(t_img *img, int x, int y, int color);
-void	bresenham(t_img *img, int x0, int x1, int y0, int y1, int color);
+void	bresenham(t_img *img, m_point *p0, m_point *p1);
 void	render_img(t_fdf *fdf, t_map *map);
 
 #endif

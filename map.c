@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/22 20:05:00 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:21:45 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_map	*load_map(char *map_path)
 
 	map = malloc(sizeof(t_map));
 	mem_check(map);
-	mem_check(map->dim);
 	size_of_map(map_path, map);
 	map->size = map->dim[MWIDTH] * map->dim[MHEIGHT];
 	map->p = malloc(sizeof(m_point) * map->size);
@@ -78,6 +77,7 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	int row_number;
 	int col_number;
 	int map_fd;
+	int	sign;
 
 	map_fd = open(map_path, O_RDONLY);
 	line = get_next_line(map_fd);
@@ -88,8 +88,11 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	{
 		j = 0;
 		col_number = 0;
-		while (line [j] && i < map->size)
+		while (line[j] && i < map->size)
 		{
+			sign = 1;
+			if (line[j] == '-')
+				sign = -1;
 			points[i].p_3dv[z] = 0;
 			if (is_number(line[j]))
 			{
@@ -101,6 +104,7 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 					points[i].p_3dv[z] += line[j] - '0';
 					j++;
 				}
+				points[i].p_3dv[z] *= sign;
 				if (line[j] == ',')
 				{
 					j += 3;
@@ -110,7 +114,6 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 					points[i].color = WHITE_PIXEL;
 				if (points[i].p_3dv[z] > map->max_height)
 					map->max_height = points[i].p_3dv[z];
-
 				i++;
 			}
 			j++;
