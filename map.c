@@ -6,13 +6,14 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/22 05:00:28 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:05:00 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 // TODO cleanup this files a mess
+// TODO remove scale from load points
 
 static void	*size_of_map(char *map_path, t_map *map);
 static void load_points(t_map *map, m_point *points, char *map_path); // just give it map du

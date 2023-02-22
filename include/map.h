@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/22 01:54:29 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:05:09 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "fdf.h"
 
+// TODO change to s_point and t_point
 typedef struct m_point
 {
 	int p_2dv[2];
@@ -46,6 +47,13 @@ enum RANGE
 	RANGE,
 	MIN,
 	MAX
+};
+// * color gradient
+enum COLOR {
+	height0,
+	color0,
+	height1,
+	color1
 };
 typedef struct s_map
 {

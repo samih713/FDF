@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/21 22:14:54 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:13:32 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 #include "fdf.h"
 // TODO reduce function arguments and function size
+// TODO color start end point maybe flipped maybe with ch variable
+// TODO change this to accept point
 void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
 {
 	int x, y;
+	// int c_color; // current color
 	x = x0;
 	y = y0;
 	//
@@ -55,3 +58,19 @@ void bresenham(t_img *img, int x0, int x1, int y0, int y1, int color)
 		img_pix_put(img, x, y, color);
 	}
 }
+
+// ! using the bigger delta
+// find_color(color, delta)
+// * finds color as a percentage of current point
+/* static int	find_color(int *color, int *delta)
+{
+	int	percent;
+	// find %
+	if (abs(dx) > abs(dy))
+	{
+
+	}
+	//
+	int r, g, b;
+
+} */

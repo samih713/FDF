@@ -17,7 +17,7 @@
 // macros
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
-# define SCALE 3 // change implementation
+# define SCALE 10 // change implementation
 
 // ! wtf is this for?
 # define MLX_ERROR 1
@@ -41,15 +41,16 @@ void	empty_check(int map_size, t_map *map);
 #endif
 
 // * Priority
-// TODO handle hex input (height,0xcolor or 0xcolor)
-// TODO segfault when scale is too large or map is too large
+// TODO color gradient
+// TODO remove scale and offset from load points()
+// TODO there's still an overflow issue from the right side -> shows up on left
 // TODO events (checkout github page how to handle keypresses ...)
-// TODO parallel projection
-// TODO zoom
 // TODO program name should be fdf
 // TODO error handling
 // TODO Testing (brainstorm)
 // * extra
+// TODO zoom
+// TODO parallel projection
 // TODO add menu with controls
 // TODO color gradient
 // TODO window title based on map
