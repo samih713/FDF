@@ -6,7 +6,7 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 18:59:27 by sabdelra          #+#    #+#              #
-#    Updated: 2023/02/23 16:48:12 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/02/24 01:30:00 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ COLOR_BLUE=\033[0;34m
 COLOR_END=\033[0m
 ###
 
-SRC:= utils.c map.c draw.c transform.c wires.c error.c events.c
+SRC:= utils.c map.c map_utils.c draw.c transform.c wires.c error.c events.c
 
-OBJ:= utils.o map.o draw.o transform.o wires.o error.o events.o
+OBJ:= utils.o map.o map_utils.o draw.o transform.o wires.o error.o events.o
 
 INC_DIR:= ./include
 

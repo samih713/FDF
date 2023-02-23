@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 23:40:17 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 01:28:26 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_map
 	t_point *p; // array of structs
 } t_map;
 
-// Map functions
+// Map functions & utils
 t_map	*load_map(char *map_path, t_view_controls *vc);
 // projection
 void	project_iso(t_map *map, t_point *points, int size);
