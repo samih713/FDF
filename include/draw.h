@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:16:22 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/22 22:37:56 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:09:13 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ enum POINTS
 	y_nxt,
 	x_abv,
 	y_abv
+};
+// * color gradient
+enum COLOR {
+	r,
+	g,
+	b
 };
 typedef struct s_img
 {

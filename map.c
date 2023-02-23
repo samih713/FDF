@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/23 00:21:45 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 04:01:37 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 // TODO cleanup this files a mess
 // TODO remove scale from load points
+// ! optimize this function
 
 static void	*size_of_map(char *map_path, t_map *map);
 static void load_points(t_map *map, m_point *points, char *map_path); // just give it map du
 static void get_color(int *color, char *line, int *j);
+static int	get_number(char *line, int *j);
 
 t_map	*load_map(char *map_path)
 {
@@ -77,7 +79,6 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	int row_number;
 	int col_number;
 	int map_fd;
-	int	sign;
 
 	map_fd = open(map_path, O_RDONLY);
 	line = get_next_line(map_fd);
@@ -90,21 +91,13 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 		col_number = 0;
 		while (line[j] && i < map->size)
 		{
-			sign = 1;
-			if (line[j] == '-')
-				sign = -1;
 			points[i].p_3dv[z] = 0;
 			if (is_number(line[j]))
 			{
 				points[i].p_3dv[y] = SCALE * row_number;
-				points[i].p_3dv[x] = SCALE * col_number++;
-				while (is_number(line[j]))
-				{
-					points[i].p_3dv[z] *= 10;
-					points[i].p_3dv[z] += line[j] - '0';
-					j++;
-				}
-				points[i].p_3dv[z] *= sign;
+				points[i].p_3dv[x] = SCALE * col_number;
+				col_number++;
+				points[i].p_3dv[z] = get_number(line, &j);
 				if (line[j] == ',')
 				{
 					j += 3;
@@ -126,7 +119,24 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 	close(map_fd);
 }
 
-// ! optimize this function
+static int	get_number(char *line, int *j)
+{
+	int	z;
+	int sign;
+
+	z = 0;
+	sign = 1;
+	if (line[(*j) - 1] && line[(*j) - 1] == '-')
+		sign = -1;
+	while (is_number(line[*j]))
+	{
+		z *= 10;
+		z += line[*j] - '0';
+		(*j)++;
+	}
+	return (sign * z);
+}
+
 static void get_color(int *color, char *line, int *j)
 {
 	int		i;

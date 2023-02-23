@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/22 23:18:47 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:08:51 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,6 @@ enum RANGE
 	RANGE,
 	MIN,
 	MAX
-};
-// * color gradient
-enum COLOR {
-	red,
-	green,
-	blue
 };
 typedef struct s_map
 {
