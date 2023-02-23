@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 03:10:45 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 04:48:34 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 #include "fdf.h"
 
-static int	find_color(int *c_point, m_point *p0, m_point *p1);
+static int	find_color(int *c_point, t_point *p0, t_point *p1);
 static int	load_color(int s, int e, float p);
-static int switch_points(m_point *p0, m_point *p1, int *delta, int *inc);
+static int switch_points(t_point *p0, t_point *p1, int *delta, int *inc);
 
-void	bresenham(t_img *img, m_point *p0, m_point *p1)
+void	bresenham(t_img *img, t_point *p0, t_point *p1)
 {
 	int	cp[2];
 	int	delta[2];
@@ -50,7 +50,7 @@ void	bresenham(t_img *img, m_point *p0, m_point *p1)
 	}
 }
 
-static int switch_points(m_point *p0, m_point *p1, int *delta, int *inc)
+static int switch_points(t_point *p0, t_point *p1, int *delta, int *inc)
 {
 	int temp;
 	int ch;
@@ -77,7 +77,7 @@ static int switch_points(m_point *p0, m_point *p1, int *delta, int *inc)
 }
 
 // * finds color as a percentage of current point
-static int	find_color(int *c_point, m_point *p0, m_point *p1)
+static int	find_color(int *c_point, t_point *p0, t_point *p1)
 {
 	double	range;
 	int		start_col;

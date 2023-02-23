@@ -15,12 +15,8 @@
 #include "draw.h"
 
 // macros
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
-# define SCALE 7 // change implementation
-
-// ! wtf is this for?
-# define MLX_ERROR 1
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
 
 // ! testing
 # define RED_PIXEL 0xFF0000
@@ -41,9 +37,8 @@ void	empty_check(int map_size, t_map *map);
 #endif
 
 // * Priority
-// TODO there's still an overflow issue from the right side -> shows up on left
 // TODO events (checkout github page how to handle keypresses ...)
-// TODO remove scale and offset from load points()
+// TODO remove offset from load points()
 // TODO program name should be fdf
 // TODO error handling
 // TODO Testing (brainstorm)
@@ -52,7 +47,7 @@ void	empty_check(int map_size, t_map *map);
 // TODO zoom
 // TODO parallel projection
 // TODO add menu with controls
-// TODO color gradient
+// TODO clamp the wiredrawing instead
 // TODO window title based on map
 // * before submission
 // TODO remove encode rgb and other not used functions
@@ -61,7 +56,7 @@ void	empty_check(int map_size, t_map *map);
 // TODO Makefile
 // *dump event ideas here
 // TODO escape and basic controls from subject
-// TODO zoom (in/out) this would increase scale
+// TODO zoom (in/out) this would increase scale ( struct )
 // TODO zoom for elevation (shift + zoom) controls
 // TODO move map (u,d,l,r)
 // * dump error testing ideas here

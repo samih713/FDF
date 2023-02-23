@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 03:08:51 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 04:48:42 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@
 #include "fdf.h"
 
 // TODO change to s_point and t_point
-typedef struct m_point
+typedef struct s_point
 {
 	int p_2dv[2];
 	int p_3dv[3];
 	int color;
-} m_point;
+} t_point;
 
+// * Map controls
+typedef struct s_view_controls
+{
+	unsigned int zoom;
+	unsigned int x_offset;
+	unsigned int y_offset;
+}	t_view_controls;
 // * 3d point co-ordinates
 enum coordinates_3d
 {
@@ -55,12 +62,12 @@ typedef struct s_map
 	int os_u; // offset
 	int os_v; // offset
 	int max_height; // TODO use for color
-	m_point *p; // array of structs
+	t_point *p; // array of structs
 } t_map;
 
 // Map functions
-t_map	*load_map(char *map_path);
+t_map	*load_map(char *map_path, t_view_controls *vc);
 // projection
-void	project_iso(t_map *map, m_point *points, int size);
+void	project_iso(t_map *map, t_point *points, int size);
 
 #endif

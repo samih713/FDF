@@ -6,13 +6,13 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:12:56 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/22 22:40:20 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 04:52:32 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	clamp(m_point *p0, m_point *p1);
+static int	clamp(t_point *p0, t_point *p1);
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
@@ -40,7 +40,7 @@ void	render_img(t_fdf *fdf, t_map *map)
 	int	i;
 
 	i = 0;
-	// TODO ready for zoom I guess
+	// TODO ready for movement I guess
 	while (i < map->size)
 	{
 		map->p[i].p_2dv[u] += map->os_u;
@@ -65,14 +65,14 @@ void	render_img(t_fdf *fdf, t_map *map)
 	free(map->p);
 }
 
-static int	clamp(m_point *p0, m_point *p1)
+static int	clamp(t_point *p0, t_point *p1)
 {
 
-	if (p0->p_2dv[u] > WINDOW_WIDTH || p0->p_2dv[v] > WINDOW_HEIGHT)
+	if (p0->p_2dv[u] > WIN_WIDTH - 1 || p0->p_2dv[v] > WIN_HEIGHT - 1)
 		return (0);
 	else if (p0->p_2dv[u] < 0 || p0->p_2dv[v] < 0)
 		return (0);
-	else if (p1->p_2dv[u] > WINDOW_WIDTH || p1->p_2dv[v] > WINDOW_HEIGHT)
+	else if (p1->p_2dv[u] > WIN_WIDTH - 1 || p1->p_2dv[v] > WIN_HEIGHT - 1)
 		return (0);
 	else if (p1->p_2dv[u] < 0 || p1->p_2dv[v] < 0)
 		return (0);

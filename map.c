@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/23 04:01:37 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 04:48:34 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 // ! optimize this function
 
 static void	*size_of_map(char *map_path, t_map *map);
-static void load_points(t_map *map, m_point *points, char *map_path); // just give it map du
+static void load_points(t_map *map, t_point *points, char *map_path); // just give it map du
 static void get_color(int *color, char *line, int *j);
 static int	get_number(char *line, int *j);
+static void apply_zoom(t_map *map, t_view_controls *vc);
 
-t_map	*load_map(char *map_path)
+t_map	*load_map(char *map_path, t_view_controls *vc)
 {
 	t_map	*map;
 
@@ -29,9 +30,10 @@ t_map	*load_map(char *map_path)
 	mem_check(map);
 	size_of_map(map_path, map);
 	map->size = map->dim[MWIDTH] * map->dim[MHEIGHT];
-	map->p = malloc(sizeof(m_point) * map->size);
+	map->p = malloc(sizeof(t_point) * map->size);
 	mem_check(map->p);
 	load_points(map, map->p, map_path);
+	apply_zoom(map, vc);
 	project_iso(map, map->p, map->size);
 	return map;
 }
@@ -71,7 +73,7 @@ static void	*size_of_map(char *map_path, t_map *map)
 	return (map->dim);
 }
 
-static void load_points(t_map *map, m_point *points, char *map_path)
+static void load_points(t_map *map, t_point *points, char *map_path)
 {
 	char *line;
 	int j;
@@ -94,8 +96,8 @@ static void load_points(t_map *map, m_point *points, char *map_path)
 			points[i].p_3dv[z] = 0;
 			if (is_number(line[j]))
 			{
-				points[i].p_3dv[y] = SCALE * row_number;
-				points[i].p_3dv[x] = SCALE * col_number;
+				points[i].p_3dv[y] = row_number;
+				points[i].p_3dv[x] = col_number;
 				col_number++;
 				points[i].p_3dv[z] = get_number(line, &j);
 				if (line[j] == ',')
@@ -154,5 +156,19 @@ static void get_color(int *color, char *line, int *j)
 		*color *= 10;
 		*color += i;
 		(*j)++;
+	}
+}
+
+// * Apply zoom
+static void apply_zoom(t_map *map, t_view_controls *vc)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->size)
+	{
+		map->p[i].p_3dv[x] *= vc->zoom;
+		map->p[i].p_3dv[y] *= vc->zoom;
+		i++;
 	}
 }
