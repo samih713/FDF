@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 04:54:35 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:05:26 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	t_fdf	fdf;
 	t_view_controls vc;
 
-	vc.zoom = 8;
+	vc.zoom = 7;
 	arg_check(argc);
 	format_check(argv[1], ".fdf");
 	map = load_map(argv[1], &vc);

@@ -15,8 +15,8 @@
 #include "draw.h"
 
 // macros
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 720
+# define WIN_WIDTH 1980
+# define WIN_HEIGHT 1080
 
 // ! testing
 # define RED_PIXEL 0xFF0000
