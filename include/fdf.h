@@ -10,14 +10,17 @@
 #include <fcntl.h>
 #include <math.h>
 #include <stdbool.h>
+#include <X11/keysym.h>
 #include "get_next_line.h"
 #include "map.h"
 #include "draw.h"
+#include "events.h"
 
 // macros
-# define WIN_WIDTH 1980
-# define WIN_HEIGHT 1080
-
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 720
+# define MAX_ZOOM 20
+# define MIN_ZOOM 0
 // ! testing
 # define RED_PIXEL 0xFF0000
 # define WHITE_PIXEL 0xFFFFFF

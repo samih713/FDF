@@ -6,7 +6,7 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 18:59:27 by sabdelra          #+#    #+#              #
-#    Updated: 2023/02/22 03:40:31 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/02/23 16:48:12 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ COLOR_BLUE=\033[0;34m
 COLOR_END=\033[0m
 ###
 
-SRC:= utils.c map.c draw.c transform.c wires.c error.c
+SRC:= utils.c map.c draw.c transform.c wires.c error.c events.c
 
-OBJ:= utils.o map.o draw.o transform.o wires.o error.o
+OBJ:= utils.o map.o draw.o transform.o wires.o error.o events.o
 
 INC_DIR:= ./include
 
@@ -27,7 +27,7 @@ LIB_DIR:= ./lib
 
 GNL_DIR:= ./get_next_line
 
-CC_FLAGS:= -Wall -Werror -Wextra -std=c99 -ggdb3
+CC_FLAGS:= -Wall -Wextra -std=c99 -ggdb3
 
 MLX_FLAGS:=-lmlx_Linux -lXext -lX11 -lm -lz
 

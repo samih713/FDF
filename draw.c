@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:12:56 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 04:52:32 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 00:00:43 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
 	int		i;
+	int		c;
 
 	i = img->bpp - 8;
+	c = 0;
 	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	while (i >= 0)
 	{
 		if (img->endian != 0) {
-			*pixel = (color >> i) & 0xFF;
-			pixel++;
+			pixel[c] = (color >> i) & 0xFF;
+			c++;
 		}
 		else {
-			*pixel = (color >> (img->bpp - 8 - i)) & 0xFF;
-			pixel++;
+			pixel[c] = (color >> (img->bpp - 8 - i)) & 0xFF;
+			c++;
 		}
 		i -= 8;
 	}
@@ -62,7 +64,6 @@ void	render_img(t_fdf *fdf, t_map *map)
 		}
 		i++;
 	}
-	free(map->p);
 }
 
 static int	clamp(t_point *p0, t_point *p1)

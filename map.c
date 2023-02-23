@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/02/23 04:48:34 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:45:56 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	*size_of_map(char *map_path, t_map *map);
 static void load_points(t_map *map, t_point *points, char *map_path); // just give it map du
 static void get_color(int *color, char *line, int *j);
 static int	get_number(char *line, int *j);
-static void apply_zoom(t_map *map, t_view_controls *vc);
+void apply_zoom(t_map *map, int zoom);
 
 t_map	*load_map(char *map_path, t_view_controls *vc)
 {
@@ -33,7 +33,7 @@ t_map	*load_map(char *map_path, t_view_controls *vc)
 	map->p = malloc(sizeof(t_point) * map->size);
 	mem_check(map->p);
 	load_points(map, map->p, map_path);
-	apply_zoom(map, vc);
+	apply_zoom(map, vc->zoom);
 	project_iso(map, map->p, map->size);
 	return map;
 }
@@ -128,7 +128,7 @@ static int	get_number(char *line, int *j)
 
 	z = 0;
 	sign = 1;
-	if (line[(*j) - 1] && line[(*j) - 1] == '-')
+	if ((*j) >= 1 && line[(*j) - 1] == '-')
 		sign = -1;
 	while (is_number(line[*j]))
 	{
@@ -160,15 +160,15 @@ static void get_color(int *color, char *line, int *j)
 }
 
 // * Apply zoom
-static void apply_zoom(t_map *map, t_view_controls *vc)
+void apply_zoom(t_map *map, int zoom)
 {
 	int	i;
 
 	i = 0;
 	while (i < map->size)
 	{
-		map->p[i].p_3dv[x] *= vc->zoom;
-		map->p[i].p_3dv[y] *= vc->zoom;
+		map->p[i].p_3dv[x] *= zoom;
+		map->p[i].p_3dv[y] *= zoom;
 		i++;
 	}
 }

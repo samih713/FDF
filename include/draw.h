@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:16:22 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 04:48:34 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 00:07:01 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
+	t_map	*map;
+	char	*map_path;
+	t_view_controls vc;
 }	t_fdf;
 
 void	img_pix_put(t_img *img, int x, int y, int color);
