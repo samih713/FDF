@@ -6,13 +6,11 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:27:24 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/21 16:01:10 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:10:17 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-// TODO access to check if file exists and accessable?
 
 void	mem_check(void *allocated_memory)
 {

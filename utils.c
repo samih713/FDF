@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:25:35 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 00:18:47 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 02:51:47 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ unsigned int	is_hex(char c)
 		hex_l++;
 	}
 	return (0);
-}
-
-unsigned int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
-{
-	return (red << 16 | green << 8 | blue);
 }
 
 // * only checks if last 4 letters are ".fdf"

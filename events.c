@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:56:03 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 01:27:15 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 03:31:46 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	handle_keyrelease(int keysym, t_fdf *fdf)
 		free(fdf->map->p);
 		free(fdf->map);
 		fdf->img.mlx_img = mlx_new_image(fdf->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+		fdf->img.addr = mlx_get_data_addr(fdf->img.mlx_img, &fdf->img.bpp, &fdf->img.line_len, &fdf->img.endian);
 		mem_check(fdf->img.mlx_img);
 		fdf->map = load_map(fdf->map_path, &fdf->vc);
 		render_img(fdf, fdf->map);

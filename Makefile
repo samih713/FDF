@@ -6,7 +6,7 @@
 #    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 18:59:27 by sabdelra          #+#    #+#              #
-#    Updated: 2023/02/24 01:30:00 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/02/24 03:26:27 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIB_DIR:= ./lib
 
 GNL_DIR:= ./get_next_line
 
-CC_FLAGS:= -Wall -Wextra -std=c99 -ggdb3
+CC_FLAGS:= -Wall -Werror -Wextra -std=c99 -ggdb3
 
 MLX_FLAGS:=-lmlx_Linux -lXext -lX11 -lm -lz
 
