@@ -6,11 +6,11 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:25:35 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 04:44:11 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:43:14 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*  General utilities */
+//* General utilities */
 #include "fdf.h"
 
 unsigned int	is_number(char c)
@@ -29,13 +29,13 @@ unsigned int	is_hex(char c)
 	hex_u = "FEDCBA";
 	if (c == ',' || c == 'x')
 		return (1);
-	while(*hex_u)
+	while (*hex_u)
 	{
 		if (c == *hex_u)
 			return (1);
 		hex_u++;
 	}
-	while(*hex_l)
+	while (*hex_l)
 	{
 		if (c == *hex_l)
 			return (1);

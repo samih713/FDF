@@ -13,8 +13,8 @@
 #include <X11/keysym.h>
 
 // * macros
-# define WIN_WIDTH 900
-# define WIN_HEIGHT 720
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 # define MAX_ZOOM 20
 # define MIN_ZOOM 1
 // ! testing
@@ -123,11 +123,11 @@ void	empty_check(int map_size, t_map *map);
 #endif
 
 // * Priority
+// ! replace memcpy in apply_zoom
 // TODO move clamp to bresenham to avoid weird edges
 // TODO error handling
 // TODO Testing (brainstorm)
 // * extra
-// doesnt have to be same dimensions as window maybe
 // TODO parallel projection
 // TODO add menu with controls
 // TODO window title based on map

@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:56:03 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 05:27:46 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:35:58 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	handle_keyrelease(int keysym, t_fdf *fdf)
 	{
 		mlx_destroy_image(fdf->mlx_ptr, fdf->img.mlx_img);
 		fdf->img.mlx_img = mlx_new_image(fdf->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
-		fdf->img.addr = mlx_get_data_addr(fdf->img.mlx_img, &fdf->img.bpp, &fdf->img.line_len, &fdf->img.endian);
+		fdf->img.addr = mlx_get_data_addr(fdf->img.mlx_img, &fdf->img.bpp,
+				&fdf->img.line_len, &fdf->img.endian);
 		mem_check(fdf->img.mlx_img);
 		apply_zoom(fdf->map, fdf);
 		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr,

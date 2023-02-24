@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 04:43:33 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:08:19 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,25 @@ void	bresenham(t_img *img, t_point *p0, t_point *p1)
 	p = (2 * delta[y]) - delta[x];
 	while (cp[x] < p1->p_2dv[u])
 	{
-		if (p <= 0)
-		{
-			if (ch)
-				cp[y] += inc[y];
-			else
-				cp[x] += inc[x];
-			p += 2 * delta[y];
-		}
+		if (ch && p <= 0)
+			cp[y] += inc[y];
+		else if (!ch && p <= 0)
+			cp[x] += inc[x];
 		else
 		{
 			cp[y] += inc[y];
 			cp[x] += inc[x];
-			p += (2 * delta[y]) - (2 * delta[x]);
+			p -= (2 * delta[x]);
 		}
+		p += 2 * delta[y];
 		img_pix_put(img, cp[x], cp[y], find_color(cp, p0, p1));
 	}
 }
 
 static int	switch_points(t_point *p0, t_point *p1, int *delta, int *inc)
 {
-	int temp;
-	int ch;
+	int	temp;
+	int	ch;
 
 	delta[x] = abs(p1->p_2dv[u] - p0->p_2dv[u]);
 	delta[y] = abs(p1->p_2dv[v] - p0->p_2dv[v]);
@@ -80,10 +77,9 @@ static int	switch_points(t_point *p0, t_point *p1, int *delta, int *inc)
 static int	find_color(int *c_point, t_point *p0, t_point *p1)
 {
 	double	range;
-	int		start_col;
-	int		end_col;
+	int		col[2];
 	int		cur_col[3];
-	float	p; //position of the point as a percentage
+	float	p;
 
 	if (p0->color == p1->color)
 		return (p0->color);
@@ -91,19 +87,19 @@ static int	find_color(int *c_point, t_point *p0, t_point *p1)
 	{
 		range = p1->p_2dv[u] - p0->p_2dv[u];
 		p = (float)(c_point[x] - p0->p_2dv[u]) / (float)range;
-		start_col = p0->color;
-		end_col = p1->color;
+		col[0] = p0->color;
+		col[1] = p1->color;
 	}
 	else
 	{
 		range = p0->p_2dv[u] - p1->p_2dv[u];
 		p = (float)(c_point[x] - p1->p_2dv[u]) / (float)range;
-		start_col = p1->color;
-		end_col = p0->color;
+		col[0] = p1->color;
+		col[1] = p0->color;
 	}
-	cur_col[r] = load_color((start_col >> 16) & 0xFF, (end_col >> 16) & 0xFF, p);
-	cur_col[g] = load_color((start_col >> 8) & 0xFF, (end_col >> 8) & 0xFF, p);
-	cur_col[b] = load_color((start_col & 0xFF), (end_col & 0xFF), p);
+	cur_col[r] = load_color((col[0] >> 16) & 0xFF, (col[1] >> 16) & 0xFF, p);
+	cur_col[g] = load_color((col[0] >> 8) & 0xFF, (col[1] >> 8) & 0xFF, p);
+	cur_col[b] = load_color((col[0] & 0xFF), (col[1] & 0xFF), p);
 	return ((cur_col[r] << 16) | (cur_col[g] << 8) | cur_col[b]);
 }
 

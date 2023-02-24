@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 01:29:25 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 06:31:45 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:36:19 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	get_number(char *line, int *j)
 
 // * Bonus
 // * passing map by value to avoid modifying actual value
+// ! replace memcpy
 void	apply_zoom(t_map *map, t_fdf *fdf)
 {
 	int		i;
@@ -62,8 +63,6 @@ void	apply_zoom(t_map *map, t_fdf *fdf)
 	p = malloc(sizeof(t_point) * map->size);
 	memcpy(p, map->p, map->size * sizeof(t_point));
 	i = 0;
-	printf("zoom is %d\n", fdf->vc.zoom);
-	printf("point is %d\n", map->p[i + 9].p_3dv[x]);
 	while (i < map->size)
 	{
 		p[i].p_3dv[x] *= fdf->vc.zoom;
