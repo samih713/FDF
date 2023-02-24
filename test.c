@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 00:28:16 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:28:25 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int main(int argc, char **argv)
 	arg_check(argc);
 	format_check(argv[1], ".fdf");
 	fdf.map_path = (argv[1]);
-	fdf.map = load_map(fdf.map_path, &fdf.vc);
+	fdf.map = load_map(fdf.map_path);
 	// * mlx initiation
 	init_mlx(&fdf, argv[1]);
 	// * draw map on image
-	render_img(&fdf, fdf.map);
+	apply_zoom(fdf.map, &fdf);
+	// render_img(&fdf, fdf.map);
 	// *maybe centering is here 0, 0?
 	mlx_put_image_to_window(fdf.mlx_ptr, fdf.win_ptr, fdf.img.mlx_img, 0, 0);
 	// * Hooks

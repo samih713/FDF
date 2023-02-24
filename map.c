@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 03:38:15 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 04:09:56 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 05:10:52 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	*size_of_map(char *map_path, t_map *map);
 static void	load_points(t_map *map, t_point *points, char *map_path);
 static void	open_map(int *map_fd, char *map_path);
 
-t_map	*load_map(char *map_path, t_view_controls *vc)
+t_map	*load_map(char *map_path)
 {
 	t_map	*map;
 
@@ -40,8 +40,8 @@ t_map	*load_map(char *map_path, t_view_controls *vc)
 	map->p = malloc(sizeof(t_point) * map->size);
 	mem_check(map->p);
 	load_points(map, map->p, map_path);
-	apply_zoom(map, vc->zoom);
-	project_iso(map, map->p, map->size);
+	// apply_zoom(*map, vc->zoom);
+	// project_iso(map, map->p, map->size);
 	return (map);
 }
 

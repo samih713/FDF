@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:25:35 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 02:51:47 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 04:44:11 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ unsigned int	is_number(char c)
 		return (1);
 	return (0);
 }
-// check for prefix ",0x"
+
 unsigned int	is_hex(char c)
 {
 	char	*hex_u;

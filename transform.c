@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 05:12:02 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/23 04:52:32 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:29:44 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "fdf.h"
 
 static void find_range(t_map *map, int *range, int index);
-/* Isometric transformation */
 // TODO take angle for projection as an argument
 void	project_iso(t_map *map, t_point *p, int size)
 {
@@ -26,8 +25,8 @@ void	project_iso(t_map *map, t_point *p, int size)
 	i = 0;
 	while(i < size)
 	{
-		p[i].p_2dv[u] = (p[i].p_3dv[x] - p[i].p_3dv[y]) * cos(0.523599);
-		p[i].p_2dv[v] = -p[i].p_3dv[z] + (p[i].p_3dv[x] + p[i].p_3dv[y]) * sin(0.523599);
+		map->p[i].p_2dv[u] = (p[i].p_3dv[x] - p[i].p_3dv[y]) * cos(0.523599);
+		map->p[i].p_2dv[v] = -p[i].p_3dv[z] + (p[i].p_3dv[x] + p[i].p_3dv[y]) * sin(0.523599);
 		i++;
 	}
 	find_range(map, range_u, u);

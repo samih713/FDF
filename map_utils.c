@@ -6,11 +6,12 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 01:29:25 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 03:37:17 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 06:31:45 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "string.h"
 
 void	get_color(int *color, char *line, int *j)
 {
@@ -52,15 +53,24 @@ int	get_number(char *line, int *j)
 }
 
 // * Bonus
-void	apply_zoom(t_map *map, int zoom)
+// * passing map by value to avoid modifying actual value
+void	apply_zoom(t_map *map, t_fdf *fdf)
 {
-	int	i;
+	int		i;
+	t_point	*p;
 
+	p = malloc(sizeof(t_point) * map->size);
+	memcpy(p, map->p, map->size * sizeof(t_point));
 	i = 0;
+	printf("zoom is %d\n", fdf->vc.zoom);
+	printf("point is %d\n", map->p[i + 9].p_3dv[x]);
 	while (i < map->size)
 	{
-		map->p[i].p_3dv[x] *= zoom;
-		map->p[i].p_3dv[y] *= zoom;
+		p[i].p_3dv[x] *= fdf->vc.zoom;
+		p[i].p_3dv[y] *= fdf->vc.zoom;
 		i++;
 	}
+	project_iso(map, p, map->size);
+	free(p);
+	render_img(fdf, map);
 }
