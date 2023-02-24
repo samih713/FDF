@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:34:43 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 16:36:32 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 21:22:28 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ typedef struct s_point
 // * Map controls
 typedef struct s_view_controls
 {
-	unsigned int	zoom;
-	unsigned int	x_offset;
-	unsigned int	y_offset;
+	int	zoom;
+	int	x_offset;
+	int	y_offset;
 }	t_vc;
 // * Map
 typedef struct s_map
@@ -63,7 +63,9 @@ void	get_color(int *color, char *line, int *j);
 int		get_number(char *line, int *j);
 // projection
 void	project_iso(t_map *map, t_point *points, int size);
+int		clamp(t_point *p0, t_point *p1);
 // * bonus?
 void	apply_zoom(t_map *map, t_fdf *fdf);
+void	move_projection(t_map *map, t_fdf *fdf);
 
 #endif

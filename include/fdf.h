@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:18:21 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 16:35:54 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 21:31:43 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include "draw.h"
 # include "events.h"
 // * macros
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1080
+# define WIN_HEIGHT 720
 # define MAX_ZOOM 20
 # define MIN_ZOOM 1
 // * colors
@@ -91,19 +91,18 @@ void			empty_check(int map_size, t_map *map);
 
 // * Priority
 // ! replace memcpy in apply_zoom
-// TODO move clamp to bresenham to avoid weird edges
-// TODO error handling
-// TODO Testing (brainstorm)
 // * extra
+// TODO move clamp to bresenham to avoid weird edges
+// TODO zoom for elevation (shift + zoom) controls
 // TODO parallel projection
-// TODO add menu with controls
 // TODO window title based on map
-// TODO program name should be fdf
+// TODO error handling
+// TODO add menu with controls
 // * before submission
 // TODO file clean-up
 // TODO norminette
 // TODO Makefile
+// TODO Testing (brainstorm)
+// TODO program name should be fdf
 // *dump event ideas here
-// TODO move map (u,d,l,r)
-// TODO zoom for elevation (shift + zoom) controls
 // * dump error testing ideas here

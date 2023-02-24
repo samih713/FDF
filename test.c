@@ -6,7 +6,7 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 16:30:12 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 20:11:37 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(int argc, char **argv)
 	t_fdf	fdf;
 
 	fdf.vc.zoom = 3;
+	fdf.vc.x_offset = 0;
+	fdf.vc.y_offset = 0;
 	arg_check(argc);
 	format_check(argv[1], ".fdf");
 	fdf.map_path = (argv[1]);
