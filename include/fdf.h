@@ -1,77 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 16:18:21 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/02/24 16:35:54 by sabdelra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
-
-// includes
-#include <mlx.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <math.h>
-#include <stdbool.h>
-#include <X11/keysym.h>
-
+// * Includes
+# include <mlx.h>
+# include <stdlib.h>
+# include <stdint.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdbool.h>
+# include <X11/keysym.h>
+// * Local Includes
+# include "get_next_line.h"
+# include "map.h"
+# include "draw.h"
+# include "events.h"
 // * macros
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define MAX_ZOOM 20
 # define MIN_ZOOM 1
-// ! testing
+// * colors
 # define RED_PIXEL 0xFF0000
 # define WHITE_PIXEL 0xFFFFFF
 
-// * Structs and enums
-typedef struct s_point
-{
-	int p_2dv[2];
-	int p_3dv[3];
-	int color;
-} t_point;
-// * Map controls
-typedef struct s_view_controls
-{
-	unsigned int zoom;
-	unsigned int x_offset;
-	unsigned int y_offset;
-}	t_view_controls;
+// * ENUMS for readability
 // * 3d point co-ordinates
-enum coordinates_3d
+enum e_coordinates_3d
 {
 	x,
 	y,
 	z
 };
 // * 2d point co-ordinates
-enum coordinates_2d
+enum e_coordinates_2d
 {
 	u,
 	v
 };
 // * map dimensions
-enum map_size {
+enum e_map_size {
 	MWIDTH,
 	MHEIGHT
 };
 // * determine offset when projecting
-enum RANGE
+enum e_range
 {
 	RANGE,
 	MIN,
 	MAX
 };
-// * map struct
-typedef struct s_map
-{
-	int dim[2];
-	int size; // point count
-	int os_u; // offset
-	int os_v; // offset
-	int max_height; // TODO use for color
-	t_point *p; // array of structs
-} t_map;
 
-enum POINTS
+enum e_points
 {
 	x_nxt = 2,
 	y_nxt,
@@ -79,46 +71,21 @@ enum POINTS
 	y_abv
 };
 // * color gradient
-enum COLOR {
+enum e_color {
 	r,
 	g,
 	b
 };
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-
-typedef struct s_fdf
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	t_map	*map;
-	char	*map_path;
-	t_view_controls vc;
-}	t_fdf;
-
-#include "get_next_line.h"
-#include "map.h"
-#include "draw.h"
-#include "events.h"
 
 // * Utilities
-unsigned int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue); // still needs to be added
 unsigned int	is_number(char c);
 unsigned int	format_check(char *map_path, char *format);
 unsigned int	is_hex(char c);
-
 // *ERORR handling
-void	mem_check(void *allocated_memory);
-void	arg_check(int argc);
-void	open_check(int map_fd);
-void	empty_check(int map_size, t_map *map);
+void			mem_check(void *allocated_memory);
+void			arg_check(int argc);
+void			open_check(int map_fd);
+void			empty_check(int map_size, t_map *map);
 
 #endif
 

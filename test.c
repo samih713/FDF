@@ -6,14 +6,13 @@
 /*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 16:09:39 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:30:12 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //* just general testing make a better main for final version */
 
 #include "fdf.h"
-#include <stdio.h>
 
 static void	init_mlx(t_fdf *fdf, char *map);
 
