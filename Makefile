@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+         #
+#    By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 18:59:27 by sabdelra          #+#    #+#              #
-#    Updated: 2023/02/24 03:26:27 by sabdelra         ###   ########.fr        #
+#    Updated: 2023/04/06 05:52:36 by sabdelra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,34 +17,28 @@ COLOR_BLUE=\033[0;34m
 COLOR_END=\033[0m
 ###
 
-SRC:= utils.c map.c map_utils.c draw.c transform.c wires.c error.c events.c
+CCFLAGS:= -Wall -Werror -Wextra -g
 
-OBJ:= utils.o map.o map_utils.o draw.o transform.o wires.o error.o events.o
+SRC:= utils.c map.c map_utils.c draw.c transform.c wires.c error.c events.c test.c events_utils.c
 
-INC_DIR:= ./include
-
-LIB_DIR:= ./lib
-
-GNL_DIR:= ./get_next_line
-
-CC_FLAGS:= -Wall -Werror -Wextra -std=c99 -ggdb3
-
-MLX_FLAGS:=-lmlx_Linux -lXext -lX11 -lm -lz
+OBJ:= utils.o map.o map_utils.o draw.o transform.o wires.o error.o events.o test.o events_utils.o
 
 NAME:= fdf
 
-all: $(NAME) gnl
+INC_DIR:= ./include
 
-test: test.c all
-	@$(CC) $< $(NAME) -I $(INC_DIR) -L $(LIB_DIR) -lgnl $(MLX_FLAGS) -o $@ -ggdb3
-	@echo "$(COLOR_BLUE)>>test is ready$(COLOR_END)"
+GNL_DIR:= ./get_next_line
+
+all: gnl $(NAME)
+
+bonus: all
 
 $(NAME): $(OBJ)
-	@ar rcs $@ $^
-	@echo "$(COLOR_GREEN)>>fdf ready$(COLOR_END)"
+	$(CC) $(CCFLAGS) $(OBJ) -Lmlx -lmlx -L$(GNL_DIR) -lgnl -framework OpenGL -framework AppKit -o $(NAME)
+	@echo "$(COLOR_GREEN)FDF ready$(COLOR_END)"
 
 %.o: %.c
-	@$(CC) $(CC_FLAGS) -c -I $(INC_DIR) -lgnl $^ -o $@
+	@$(CC) $(CCFLAGS) -c -I $(INC_DIR) -Imlx $^ -o $@
 
 gnl:
 	$(MAKE) -C $(GNL_DIR)
@@ -59,10 +53,6 @@ clean:
 	@rm -f $(OBJ)
 
 re: fclean all
-
-# * remove later
-retest: fclean test
-# * **************
 
 .PHONY: all test fclean clean re
 

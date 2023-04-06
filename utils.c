@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 04:25:35 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 15:43:14 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/04/06 05:09:31 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ unsigned int	is_hex(char c)
 	return (0);
 }
 
-// * only checks if last 4 letters are ".fdf"
 unsigned int	format_check(char *map_path, char *format)
 {
 	size_t	length;
@@ -60,4 +59,23 @@ unsigned int	format_check(char *map_path, char *format)
 	}
 	write(2, "Invalid map format\n", 20);
 	exit (EXIT_FAILURE);
+}
+
+void	*ft_memcpy(void *dest, const void	*src, size_t n)
+{
+	char	*c_dest;
+	char	*c_src;
+	size_t	i;
+
+	if (!dest && !src)
+		return (NULL);
+	c_dest = (char *)dest;
+	c_src = (char *)src;
+	i = 0;
+	while (i < n)
+	{
+		c_dest[i] = c_src[i];
+		i++;
+	}
+	return (dest);
 }

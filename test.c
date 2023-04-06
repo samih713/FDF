@@ -3,27 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 05:36:58 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 20:11:37 by sabdelra         ###   ########.fr       */
+/*   Created: 2023/04/04 16:58:06 by sabdelra          #+#    #+#             */
+/*   Updated: 2023/04/06 06:42:15 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//* just general testing make a better main for final version */
 
 #include "fdf.h"
 
 static void	init_mlx(t_fdf *fdf, char *map);
+static void	init_fdf(t_fdf *fdf);
 
 int	main(int argc, char **argv)
 {
 	t_fdf	fdf;
 
-	fdf.vc.zoom = 3;
-	fdf.vc.x_offset = 0;
-	fdf.vc.y_offset = 0;
 	arg_check(argc);
+	init_fdf(&fdf);
 	format_check(argv[1], ".fdf");
 	fdf.map_path = (argv[1]);
 	fdf.map = load_map(fdf.map_path);
@@ -36,6 +33,16 @@ int	main(int argc, char **argv)
 	mlx_hook(fdf.win_ptr, 2, 1L << 0, &handle_keypress, &fdf);
 	mlx_loop(fdf.mlx_ptr);
 	return (0);
+}
+
+static void	init_fdf(t_fdf *fdf)
+{
+	fdf->vc.zoom = 3;
+	fdf->vc.x_offset = 0;
+	fdf->vc.y_offset = 0;
+	fdf->vc.angle.a = 0;
+	fdf->vc.angle.b = 0;
+	fdf->vc.angle.g = 0;
 }
 
 static void	init_mlx(t_fdf *fdf, char *map)

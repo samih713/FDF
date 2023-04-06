@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:12:56 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 20:35:32 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/04/06 03:57:44 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
@@ -65,4 +64,17 @@ void	render_img(t_fdf *fdf, t_map *map)
 		}
 		i++;
 	}
+}
+
+int	clamp(t_point *p0, t_point *p1)
+{
+	if (p0->p_2dv[u] > WIN_WIDTH - 1 || p0->p_2dv[v] > WIN_HEIGHT - 1)
+		return (0);
+	else if (p0->p_2dv[u] < 0 || p0->p_2dv[v] < 0)
+		return (0);
+	else if (p1->p_2dv[u] > WIN_WIDTH - 1 || p1->p_2dv[v] > WIN_HEIGHT - 1)
+		return (0);
+	else if (p1->p_2dv[u] < 0 || p1->p_2dv[v] < 0)
+		return (0);
+	return (1);
 }

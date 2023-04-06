@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 01:29:25 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 21:33:54 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/04/06 06:41:41 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,14 @@ int	get_number(char *line, int *j)
 	return (sign * z);
 }
 
-// * Bonus
-// * passing map by value to avoid modifying actual value
-// ! replace memcpy
 void	apply_zoom(t_map *map, t_fdf *fdf)
 {
 	int		i;
 	t_point	*p;
 
 	p = malloc(sizeof(t_point) * map->size);
-	memcpy(p, map->p, map->size * sizeof(t_point));
+	mem_check(p);
+	ft_memcpy(p, map->p, map->size * sizeof(t_point));
 	i = 0;
 	while (i < map->size)
 	{
@@ -71,52 +69,20 @@ void	apply_zoom(t_map *map, t_fdf *fdf)
 		p[i].p_3dv[y] *= fdf->vc.zoom;
 		i++;
 	}
-	project_iso(map, p, map->size);
+	project_iso(fdf, map, p, map->size);
 	free(p);
 	render_img(fdf, map);
 }
 
-// ! replace memcpy
 void	move_projection(t_map *map, t_fdf *fdf)
 {
-	// int i;
-	t_point *p;
+	t_point	*p;
 
 	p = malloc(sizeof(t_point) * map->size);
-	memcpy(p, map->p, map->size * sizeof(t_point));
-	// i = 0;
+	ft_memcpy(p, map->p, map->size * sizeof(t_point));
 	apply_move(fdf, p, map->size);
 	apply_zoom(map, fdf);
-	/* while (i < map->size)
-	{
-		if (i < map->size - 1)
-		{
-			if (map->p[i].p_3dv[y] == map->p[i + 1].p_3dv[y]
-				&& clamp(&p[i], &p[i + 1]))
-				bresenham(&fdf->img, &p[i], &p[i + 1]);
-		}
-		if (map->p[i].p_3dv[y] >= 1)
-		{
-			if (clamp(&p[i], &p[i - map->dim[MWIDTH]]))
-				bresenham(&fdf->img, &p[i], &p[i - map->dim[MWIDTH]]);
-		}
-		i++;
-	} */
 	free(p);
-}
-
-// TODO move clamp to bresenham to avoid weird edges
-int	clamp(t_point *p0, t_point *p1)
-{
-	if (p0->p_2dv[u] > WIN_WIDTH - 1 || p0->p_2dv[v] > WIN_HEIGHT - 1)
-		return (0);
-	else if (p0->p_2dv[u] < 0 || p0->p_2dv[v] < 0)
-		return (0);
-	else if (p1->p_2dv[u] > WIN_WIDTH - 1 || p1->p_2dv[v] > WIN_HEIGHT - 1)
-		return (0);
-	else if (p1->p_2dv[u] < 0 || p1->p_2dv[v] < 0)
-		return (0);
-	return (1);
 }
 
 static void	apply_move(t_fdf *fdf, t_point *p, int size)

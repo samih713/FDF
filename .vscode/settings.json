@@ -19,6 +19,15 @@
 		"utility": "c",
 		"new": "c",
 		"get_next_line.h": "c",
-		"stdbool.h": "c"
+		"stdbool.h": "c",
+		"stdlib.h": "c",
+		"alloca.h": "c",
+		"_malloc.h": "c",
+		"cstdlib": "c",
+		"locale": "c",
+		"__locale": "c",
+		"ostream": "c",
+		"typeinfo": "c",
+		"complex": "c"
 	}
 }

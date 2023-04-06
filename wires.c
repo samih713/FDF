@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wires.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sabdelra <sabdelra@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: sabdelra <sabdelra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 05:10:01 by sabdelra          #+#    #+#             */
-/*   Updated: 2023/02/24 16:08:19 by sabdelra         ###   ########.fr       */
+/*   Updated: 2023/04/06 05:47:28 by sabdelra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	bresenham(t_img *img, t_point *p0, t_point *p1)
 	cp[y] = p0->p_2dv[v];
 	ch = switch_points(p0, p1, delta, inc);
 	p = (2 * delta[y]) - delta[x];
-	while (cp[x] < p1->p_2dv[u])
+	while (cp[x] != p1->p_2dv[u])
 	{
 		if (ch && p <= 0)
 			cp[y] += inc[y];
